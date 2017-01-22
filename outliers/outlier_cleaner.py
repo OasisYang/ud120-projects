@@ -12,9 +12,11 @@ def outlierCleaner(predictions, ages, net_worths):
     """
     
     cleaned_data = []
-
     ### your code goes here
+    errors = predictions - net_worths
+    res = sorted(enumerate(abs(errors)), key=lambda item:item[1])
+    for x in res[:80]:
+        cleaned_data.append(tuple([ages[x[0]], net_worths[x[0]], errors[x[0]]]))
 
-    
     return cleaned_data
 
